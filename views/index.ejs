@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog App</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Blog App</h1>
+        <% if (user) { %>
+            <p>Hello, <%= user.username %>! <a href="/logout">Logout</a></p>
+        <% } else { %>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+    </header>
+    <main>
+        <h2>Recent Blogs</h2>
+        <ul>
+            <% blogs.forEach(blog => { %>
+                <li><a href="/blogs/<%= blog._id %>"><%= blog.title %></a> by <%= blog.author.username %></li>
+            <% }) %>
+        </ul>
+        <% if (user) { %>
+            <a href="/blogs/new">Create a New Blog</a>
+        <% } else { %>
+            <p><a href="/login">Login</a> to create a new blog.</p>
+        <% } %>
+    </main>
+</body>
+</html>
