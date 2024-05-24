@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles-register.css">
 </head>
 <body>
     <header>
         <h1>Register</h1>
-        <a href="/">Home</a>
+        <button class="btn-s"><a href="/">Home</a></button>
     </header>
     <main>
-        <form action="/register" method="POST">
+        <form id="registrationForm" action="/register" method="POST">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -21,9 +21,31 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" id="registerButton">Register</button>
         </form>
-        <p>Already have an account? <a href="/login">Login here</a>.</p>
+        <p>Already have an account? <button class="btn-s"><a href="/login">Login here</a></button>.</p>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const registerButton = document.getElementById("registerButton");
+                const registrationForm = document.getElementById("registrationForm");
+
+                registerButton.addEventListener("click", function(event) {
+                    event.preventDefault(); // Prevent the default form submission
+
+                    // Get the values of the username and password fields
+                    const username = document.getElementById("username").value;
+                    const password = document.getElementById("password").value;
+
+                    // Log the values to the console
+                    console.log("Username:", username);
+                    console.log("Password:", password);
+
+                    // Now you can submit the form programmatically if needed
+                    // registrationForm.submit();
+                });
+            });
+        </script>
     </main>
 </body>
 </html>

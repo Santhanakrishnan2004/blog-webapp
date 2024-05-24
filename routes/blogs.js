@@ -213,7 +213,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/Blog');
 const { ensureAuthenticated } = require('../config/auth');
-
+const User = require('../models/User');
 // Route to create a new blog (form)
 router.get('/new', ensureAuthenticated, (req, res) => {
     res.render('new-blog', { user: req.user });
@@ -222,16 +222,37 @@ router.get('/new', ensureAuthenticated, (req, res) => {
 // Route to post a new blog
 router.post('/new', ensureAuthenticated, async (req, res) => {
     try {
-        const { title, content } = req.body;
+        const { title, content ,tags } = req.body; // Convert to array of strings
+
         const newBlog = new Blog({
             title,
             content,
+          
             author: req.user._id
         });
         await newBlog.save();
         res.redirect('/blogs');
     } catch (err) {
         console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+    
+
+// Search blogs by title
+router.get('/search', async (req, res) => {
+    const searchQuery = req.query.search;
+
+    try {
+        // Perform the search query
+        const searchResults = await Blog.find({
+            title: { $regex: searchQuery, $options: 'i' } // Case-insensitive search
+        }).populate('author');
+
+        // Render the search results
+        res.render('searchResults', { searchResults });
+    } catch (error) {
+        console.error(error);
         res.status(500).send('Server Error');
     }
 });
@@ -246,6 +267,8 @@ router.get('/:id', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+
 
 // Route to post a review for a specific blog
 router.post('/:id/reviews', ensureAuthenticated, async (req, res) => {

@@ -105,6 +105,7 @@
 //     console.log(`Server started on port ${PORT}`);
 // });
 require('dotenv').config();
+const flash =require('connect-flash')
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -126,7 +127,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -153,6 +154,7 @@ app.get('/', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

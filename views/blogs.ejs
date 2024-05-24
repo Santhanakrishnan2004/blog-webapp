@@ -36,29 +36,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Blogs</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles-blogs.css">
 </head>
 <body>
     <header>
-        <h1>All Blogs</h1>
-        <% if (user) { %>
-            <p>Hello, <%= user.username %>! <a href="/logout">Logout</a></p>
-        <% } else { %>
-            <a href="/login">Login</a> | <a href="/register">Register</a>
-        <% } %>
+        <div class="container">
+            <h1>All Blogs</h1>
+            <nav>
+                <% if (user) { %>
+                    <p>Hello, <%= user.username %>! <a href="/logout" class="btn">Logout</a></p>
+                <% } else { %>
+                    <a href="/login" class="btn">Login</a> | <a href="/register" class="btn">Register</a>
+                <% } %>
+            </nav>
+        </div>
     </header>
     <main>
-        <h2>Recent Blogs</h2>
-        <ul>
-            <% blogs.forEach(blog => { %>
-                <li><a href="/blogs/<%= blog._id %>"><%= blog.title %></a> by <%= blog.author.username %></li>
-            <% }) %>
-        </ul>
-        <% if (user) { %>
-            <a href="/blogs/new">Create a New Blog</a>
-        <% } else { %>
-            <p><a href="/login">Login</a> to create a new blog.</p>
-        <% } %>
+        <div class="container">
+            <!-- Search form -->
+            <form action="/blogs/search" method="GET" class="search-form">
+                <label for="search">Search by Title:</label>
+                <input type="text" id="search" name="search" placeholder="Enter title...">
+                <button type="submit" class="btn">Search</button>
+                <% if (user) { %><button class="btn-s"><a href="/blogs/new">Create a New Blog</a></button>  
+                <% } else { %>
+                    <p> <button class="btn-s"><a href="/login">Login</a></button> to create a new blog.</p>
+                <% } %>
+            </form>
+            <h2>Recent Blogs</h2>
+            <ul class="blog-list">
+                <% blogs.forEach(blog => { %>
+                    <li>
+                        <a href="/blogs/<%= blog._id %>"><%= blog.title %></a> 
+                        by <%= blog.author.username %>
+                    </li>
+                <% }) %>
+            </ul>
+      
+        </div>
     </main>
 </body>
 </html>

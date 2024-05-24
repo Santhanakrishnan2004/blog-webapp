@@ -1,0 +1,89 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+main {
+    text-align: center;
+    margin-top: 20px;
+}
+
+main form {
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main form div {
+    margin-bottom: 10px;
+}
+
+main form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+main form input[type="text"],
+main form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+main form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0779e4;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+main form button:hover {
+    background-color: #005bb5;
+}
+
+main p {
+    margin-top: 10px;
+}
+
+main p a {
+    color: #0779e4;
+    text-decoration: none;
+}
+
+main p a:hover {
+    text-decoration: underline;
+}

@@ -4,29 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog App</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles-index.css">
+    
 </head>
 <body>
     <header>
-        <h1>Welcome to the Blog App</h1>
+        <h1>All Blogs</h1>
         <% if (user) { %>
-            <p>Hello, <%= user.username %>! <a href="/logout">Logout</a></p>
+          <p>Hello, <%= user.username %>! <button style="padding: 10px;padding-bottom: 5px;text-decoration: none;"><a href="/logout">Logout</a></p></button> 
+            <!-- Add link to profile -->
         <% } else { %>
-            <a href="/login">Login</a> | <a href="/register">Register</a>
+       <button class="btn-s"><a href="/login">Login</a> | <a href="/register">Register</a></button>     
         <% } %>
     </header>
+
+    <form action="/blogs/search" method="GET">
+        <label for="search">Search by Title:</label>
+        <input type="text" id="search" name="search" placeholder="Enter title...">
+        <button type="submit">Search</button>
+        <% if (user) { %><button class="btn-s"><a href="/blogs/new">Create a New Blog</a></button>  
+        <% } else { %>
+            <p><button class="btn-s"><a href="/login">Login</a> </button> to create a new blog.</p>
+        <% } %>
+    </form>
+
     <main>
-        <h2>Recent Blogs</h2>
-        <ul>
+        <div  class="container">
+           
+            <h2>Recent Blogs</h2>
+        <ul class="blog-list">
             <% blogs.forEach(blog => { %>
-                <li><a href="/blogs/<%= blog._id %>"><%= blog.title %></a> by <%= blog.author.username %></li>
+                <li><a href="/blogs/<%= blog._id %>"><%= blog.title %></a>
+                     by <%= blog.author.username %>
+                    </li>
             <% }) %>
         </ul>
-        <% if (user) { %>
-            <a href="/blogs/new">Create a New Blog</a>
-        <% } else { %>
-            <p><a href="/login">Login</a> to create a new blog.</p>
-        <% } %>
+        
+    </div>
     </main>
 </body>
 </html>

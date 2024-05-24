@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/styles-search.css">
+</head>
+<body>
+    <header>
+        <h1>Search Results</h1>
+       <button class="btn-s"><a href="/">Home</a></button> 
+    </header>
+    <main>
+        <div class="container">
+        <% if (searchResults.length > 0) { %>
+            <ul class="blog-list">
+                <% searchResults.forEach(blog => { %>
+                    <li><a href="/blogs/<%= blog._id %>"><%= blog.title %></a> by <%= blog.author.username %></li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No blogs found with that title.</p>
+        <% } %>
+       <button class="btn-s"> <a href="/">Go back to all blogs</a> </button> 
+    </div>
+    </main>
+</body>
+</html>

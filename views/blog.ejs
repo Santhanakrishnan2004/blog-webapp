@@ -1,78 +1,65 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= blog.title %></title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-    <header>
-        <h1><%= blog.title %></h1>
-        <p>by <%= blog.author.username %></p>
-    </header>
-    <main>
-        <p><%= blog.content %></p>
-        <a href="/blogs">Back to Blogs</a>
-    </main>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= blog.title %></title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles-blog.css">
 </head>
 <body>
     <header>
-        <h1><%= blog.title %></h1>
-        <p>by <%= blog.author.username %></p>
-        <% if (user) { %>
-            <p>Hello, <%= user.username %>! <a href="/logout">Logout</a></p>
-        <% } else { %>
-            <a href="/login">Login</a> | <a href="/register">Register</a>
-        <% } %>
+        <div class="container">
+            <h1><%= blog.title %></h1>
+            <p>  by <%= blog.author.username %></p>
+            <nav>
+                <% if (user) { %>
+                    <p>Hello, <%= user.username %>! <a href="/logout" class="btn">Logout</a></p>
+                <% } else { %>
+                    <a href="/login" class="btn">Login</a> | <a href="/register" class="btn">Register</a>
+                <% } %>
+            </nav>
+        </div>
     </header>
     <main>
-        <article>
-            <p><%= blog.content %></p>
-        </article>
+        <div class="container">
+            <article>
+                <p><%= blog.content %></p>
+            </article>
 
-        <section>
-            <h2>Reviews</h2>
-            <ul>
-                <% blog.reviews.forEach(review => { %>
-                    <li>
-                        <strong><%= review.author.username %>:</strong> 
-                        <%= review.rating %>/5 - <%= review.comment %>
-                    </li>
-                <% }) %>
-            </ul>
+            <section>
+                <h2>Reviews</h2>
+                <ul class="reviews-list">
+                    <% blog.reviews.forEach(review => { %>
+                        <li>
+                            <strong><%= review.author.username %>:</strong> 
+                            <%= review.rating %>/5 - <%= review.comment %>
+                        </li>
+                    <% }) %>
+                </ul>
 
-            <% if (user) { %>
-                <h3>Leave a Review</h3>
-                <form action="/blogs/<%= blog._id %>/reviews" method="POST">
-                    <label for="rating">Rating:</label>
-                    <select name="rating" id="rating" required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <label for="comment">Comment:</label>
-                    <textarea name="comment" id="comment" rows="4" required></textarea>
-                    <button type="submit">Submit Review</button>
-                </form>
-            <% } else { %>
-                <p><a href="/login">Login</a> to leave a review.</p>
-            <% } %>
-        </section>
-        <section>
-            <a href="/blogs" class="btn">Back to All Blogs</a>
-        </section>
+                <% if (user) { %>
+                    <h3>Leave a Review</h3>
+                    <form action="/blogs/<%= blog._id %>/reviews" method="POST" class="review-form">
+                        <label for="rating">Rating:</label>
+                        <select name="rating" id="rating" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <label for="comment">Comment:</label>
+                        <textarea name="comment" id="comment" rows="4" required></textarea>
+                        <button type="submit" class="btn">Submit Review</button>
+                    </form>
+                <% } else { %>
+                    <p><a href="/login" class="btn">Login</a> to leave a review.</p>
+                <% } %>
+            </section>
+            <section>
+                <a href="/blogs" class="btn">Back to All Blogs</a>
+            </section>
+        </div>
     </main>
 </body>
 </html>
