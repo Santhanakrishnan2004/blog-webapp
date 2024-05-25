@@ -55,8 +55,37 @@ header .btn:hover {
     background: #005bb5;
 }
 
-.search-form {
-    margin: 20px 0;
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form label {
+    margin-right: 10px;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0779e4;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #005bb5;
+}
+/* .search-form { */
+    /* margin: 10px 0;
     display: flex;
     justify-content: space-between;
 }
@@ -68,11 +97,11 @@ header .btn:hover {
     border-radius: 5px;
     flex-grow: 1;
     margin-right: 10px;
-}
+} */
 
-.search-form .btn {
+/*.search-form .btn {
     flex-shrink: 0;
-}
+} */
 
 .blog-list {
     list-style: none;

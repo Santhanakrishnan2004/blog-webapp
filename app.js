@@ -142,7 +142,8 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 // Routes
 app.use('/', require('./routes/auth'));
 app.use('/blogs', require('./routes/blogs'));
-
+app.use('/users', require('./routes/users')); 
+app.use('/auth', require('./routes/auth')); 
 // Home route
 app.get('/', async (req, res) => {
     try {
