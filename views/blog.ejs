@@ -22,6 +22,23 @@
     </header>
     <main>
         <div class="container">
+            <article class="flexs"> <section>
+                <h2>Tags</h2>
+                <ul>
+                    <% blog.tags.forEach(tag => { %>
+                        <li><%= tag %></li>
+                    <% }) %>
+                </ul>
+            </section>
+            
+         <section>
+                <h2>Genres</h2>
+                <ul>
+                    <% blog.genres.forEach(genre => { %>
+                        <li><%= genre %></li>
+                    <% }) %>
+                </ul>
+            </section></article>
             <article>
                 <p><%= blog.content %></p>
             </article>

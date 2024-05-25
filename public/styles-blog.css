@@ -128,3 +128,21 @@ section {
         margin-bottom: 10px;
     }
 }
+
+.flexs{
+    display: flex;
+    font-size: 15px;
+    width: 200px;
+  
+}
+.flexs h2{
+    font-size: 15px;
+    margin-left: 35px;
+
+}
+
+.flexs ul{
+    
+        list-style-type: none;
+    
+}

@@ -79,22 +79,68 @@ const reviewSchema = new mongoose.Schema({
     }
 });
 
-const blogSchema = new mongoose.Schema({
-    title: String,
-    content: String,
+// const blogSchema = new mongoose.Schema({
+//     title: String,
+//     content: String,
+//     author: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'User'
+//     },
+//     reviews: [reviewSchema],
+//     views: {
+//         type: Number,
+//         default: 0
+//     },
+//     likes: {
+//         type: Number,
+//         default: 0
+//     }
+// });
+
+
+const Schema = mongoose.Schema;
+
+const blogSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
     author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
-    reviews: [reviewSchema],
-    views: {
-        type: Number,
-        default: 0
+    tags: {
+        type: [String],
+        default: []
     },
-    likes: {
-        type: Number,
-        default: 0
-    }
-});
+    genres: {
+        type: [String],
+        default: []
+    },
+    reviews: [
+        {
+            rating: {
+                type: Number,
+                required: true
+            },
+            comment: {
+                type: String,
+                required: true
+            },
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            }
+        }
+    ]
+}, { timestamps: true });
+
+
 
 module.exports = mongoose.model('Blog', blogSchema);
