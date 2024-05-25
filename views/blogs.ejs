@@ -10,11 +10,20 @@
     <header>
         <h1>All Blogs</h1>
         <% if (user) { %>
-            <p>Hello, <%= user.username %>! <a href="/logout">Logout</a></p>
+            <p>Hello, <%= user.username %>! <button><a href="/logout">Logout</a></button></p>
         <% } else { %>
-            <a href="/login">Login</a> | <a href="/register">Register</a>
+            <button><a href="/login">Login</a></button> | <button><a href="/register">Register</a></button>
         <% } %>
     </header>
+    <form action="/blogs/search" method="GET">
+        <label for="search">Search by Title:</label>
+        <input type="text" id="search" name="search" placeholder="Enter title...">
+        <button type="submit">Search</button>
+        <% if (user) { %><button class="btn-s"><a href="/blogs/new">Create a New Blog</a></button>  
+        <% } else { %>
+            <p><button class="btn-s"><a href="/login">Login</a> </button> to create a new blog.</p>
+        <% } %>
+    </form>
     <main>
         <div  class="container">
            
