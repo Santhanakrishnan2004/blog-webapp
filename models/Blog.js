@@ -118,10 +118,7 @@ const blogSchema = new Schema({
         type: [String],
         default: []
     },
-    genres: {
-        type: [String],
-        default: []
-    },
+   
     reviews: [
         {
             rating: {

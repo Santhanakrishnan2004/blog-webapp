@@ -364,13 +364,12 @@ router.get('/new', ensureAuthenticated, (req, res) => {
 // Route to post a new blog
 router.post('/new', ensureAuthenticated, async (req, res) => {
     try {
-        const { title, content, tags, genres } = req.body;
+        const { title, content, tags } = req.body;
         const newBlog = new Blog({
             title,
             content,
             author: req.user._id,
-            tags: tags ? tags.split(',').map(tag => tag.trim()) : [],
-            genres: genres ? genres.split(',').map(genre => genre.trim()) : []
+            tags: tags ? tags.split(',').map(tag => tag.trim()) : []
         });
         await newBlog.save();
         res.redirect(`/blogs/${newBlog._id}`);
